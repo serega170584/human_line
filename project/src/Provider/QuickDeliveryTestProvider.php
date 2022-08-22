@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Provider;
 
-class QuickDeliveryTestProvider
+class QuickDeliveryTestProvider implements ProviderInterface
 {
     /**
      * @throws \Exception

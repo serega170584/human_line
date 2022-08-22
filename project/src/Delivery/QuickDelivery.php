@@ -8,8 +8,13 @@ use App\Provider\ProviderInterface;
 
 class QuickDelivery implements DeliveryInterface
 {
+    private string $sourceKladr;
+    private string $targetKladr;
+    private float $weight;
+
     public function __construct(
-        public readonly ProviderInterface $provider
+        public readonly ProviderInterface $provider,
+        public readonly string $uuid
     )
     {
     }
@@ -43,11 +48,63 @@ class QuickDelivery implements DeliveryInterface
             $date = $date->format('Y-m-d');
         }
 
-
         return [
             'price' => $price,
             'date' => $date,
             'error' => $error
         ];
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
+    }
+
+    /**
+     * @param string $sourceKladr
+     */
+    public function setSourceKladr(string $sourceKladr): void
+    {
+        $this->sourceKladr = $sourceKladr;
+    }
+
+    /**
+     * @param string $targetKladr
+     */
+    public function setTargetKladr(string $targetKladr): void
+    {
+        $this->targetKladr = $targetKladr;
+    }
+
+    /**
+     * @param float $weight
+     */
+    public function setWeight(float $weight): void
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceKladr(): string
+    {
+        return $this->sourceKladr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetKladr(): string
+    {
+        return $this->targetKladr;
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight(): float
+    {
+        return $this->weight;
     }
 }

@@ -10,8 +10,13 @@ class SlowDelivery implements DeliveryInterface
 {
     private const BASE_PRICE = 15000;
 
+    private string $sourceKladr;
+    private string $targetKladr;
+    private float $weight;
+
     public function __construct(
-        public readonly ProviderInterface $provider
+        public readonly ProviderInterface $provider,
+        public readonly string $uuid
     )
     {
     }
@@ -40,4 +45,57 @@ class SlowDelivery implements DeliveryInterface
             'error' => $error
         ];
     }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
+    }
+    /**
+     * @param string $sourceKladr
+     */
+    public function setSourceKladr(string $sourceKladr): void
+    {
+        $this->sourceKladr = $sourceKladr;
+    }
+
+    /**
+     * @param string $targetKladr
+     */
+    public function setTargetKladr(string $targetKladr): void
+    {
+        $this->targetKladr = $targetKladr;
+    }
+
+    /**
+     * @param float $weight
+     */
+    public function setWeight(float $weight): void
+    {
+        $this->weight = $weight;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceKladr(): string
+    {
+        return $this->sourceKladr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTargetKladr(): string
+    {
+        return $this->targetKladr;
+    }
+
+    /**
+     * @return float
+     */
+    public function getWeight(): float
+    {
+        return $this->weight;
+    }
 }
+

@@ -37,19 +37,19 @@ services:
 
     food.company:
         class: App\Delivery\QuickDelivery
-        arguments: ['@food.provider']
+        arguments: ['@food.provider', 'afe6f48e-6cd4-4c84-899d-9b135952ce36']
 
     tools.company:
         class: App\Delivery\SlowDelivery
-        arguments: ['@tools.provider']
+        arguments: ['@tools.provider', '15e6a60a-a7f8-47e6-b190-ae45ec01367a']
 
     clothes.company:
         class: App\Delivery\QuickDelivery
-        arguments: [ '@clothes.provider' ]
+        arguments: [ '@clothes.provider', 'de232e00-5c19-4bbf-8485-e856fe6e5b9e']
 
     car.company:
         class: App\Delivery\SlowDelivery
-        arguments: [ '@car.provider' ]
+        arguments: [ '@car.provider', '3cbd7ce8-acbe-4368-a6ad-0c29fedca8ff']
 
     App\DeliveryList\DeliveryList:
         calls:
