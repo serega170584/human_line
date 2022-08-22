@@ -14,4 +14,12 @@ class DeliveryList implements DeliveryListInterface
     {
         $this->list[] = $delivery;
     }
+
+    /**
+     * @return array
+     */
+    public function getList(): array
+    {
+        return $this->list;
+    }
 }
