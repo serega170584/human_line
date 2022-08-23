@@ -26,7 +26,7 @@ class SlowDelivery implements DeliveryInterface
         $price = null;
         $date = null;
 
-        $response = $this->provider->getResponse();
+        $response = $this->provider->getOffer();
 
         $error = $response['error'] ?? null;
 

@@ -6,5 +6,7 @@ namespace App\Provider;
 
 interface ProviderInterface
 {
-    public function getResponse(): array;
+    public function getOffer(): array;
+
+    public function addOrder(): array;
 }

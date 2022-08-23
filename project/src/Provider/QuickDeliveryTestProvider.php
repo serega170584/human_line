@@ -9,7 +9,18 @@ class QuickDeliveryTestProvider implements ProviderInterface
     /**
      * @throws \Exception
      */
-    public function getResponse(): array
+    public function getOffer(): array
+    {
+        return [
+            'price' => rand(3, 10) * 0.5,
+            'period' => mt_rand(3, 10),
+        ];
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function addOrder(): array
     {
         return [
             'price' => rand(3, 10) * 0.5,

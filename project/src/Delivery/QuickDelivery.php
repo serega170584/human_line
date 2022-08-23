@@ -32,7 +32,7 @@ class QuickDelivery implements DeliveryInterface
 
         $currentDateTime = new \DateTime('now', new \DateTimeZone('UTC'));
 
-        $response = $this->provider->getResponse();
+        $response = $this->provider->getOffer();
 
         if ($currentDateTime->getTimestamp() > $deadLine->getTimestamp()) {
             $error = 'Order is unavailable';

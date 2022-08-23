@@ -28,7 +28,23 @@ class HttpProvider implements ProviderInterface
      * @throws TransportExceptionInterface
      * @throws ServerExceptionInterface
      */
-    public function getResponse(): array
+    public function getOffer(): array
+    {
+        $response = $this->client->request(
+            $this->method,
+            $this->baseUrl
+        );
+        return $response->toArray();
+    }
+
+    /**
+     * @throws RedirectionExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws ClientExceptionInterface
+     * @throws TransportExceptionInterface
+     * @throws ServerExceptionInterface
+     */
+    public function addOrder(): array
     {
         $response = $this->client->request(
             $this->method,
