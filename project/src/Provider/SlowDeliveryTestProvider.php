@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Provider;
 
+use Symfony\Component\Uid\Ulid;
+
 class SlowDeliveryTestProvider implements ProviderInterface
 {
     /**
@@ -26,13 +28,8 @@ class SlowDeliveryTestProvider implements ProviderInterface
      */
     public function addOrder(): array
     {
-        $date = new \DateTime('now', new \DateTimeZone('UTC'));
-        $days = mt_rand(3, 10);
-        $interval = \DateInterval::createFromDateString("+{$days} day");
-        $date->add($interval);
         return [
-            'coefficient' => rand(3, 10) * 0.5,
-            'date' => $date->format('Y-m-d'),
+            'order_id' => (new Ulid())->toRfc4122()
         ];
     }
 }

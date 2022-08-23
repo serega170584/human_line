@@ -7,4 +7,6 @@ namespace App\Delivery;
 interface DeliveryInterface
 {
     public function getOffer(): array;
+
+    public function addOrder(): array;
 }

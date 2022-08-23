@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Provider;
 
+use Symfony\Component\Uid\Ulid;
+
 class QuickDeliveryTestProvider implements ProviderInterface
 {
     /**
@@ -23,8 +25,7 @@ class QuickDeliveryTestProvider implements ProviderInterface
     public function addOrder(): array
     {
         return [
-            'price' => rand(3, 10) * 0.5,
-            'period' => mt_rand(3, 10),
+            'order_id' => (new Ulid())->toRfc4122()
         ];
     }
 }

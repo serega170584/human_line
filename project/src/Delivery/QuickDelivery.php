@@ -60,51 +60,38 @@ class QuickDelivery implements DeliveryInterface
         return $this->uuid;
     }
 
-    /**
-     * @param string $sourceKladr
-     */
     public function setSourceKladr(string $sourceKladr): void
     {
         $this->sourceKladr = $sourceKladr;
     }
 
-    /**
-     * @param string $targetKladr
-     */
     public function setTargetKladr(string $targetKladr): void
     {
         $this->targetKladr = $targetKladr;
     }
 
-    /**
-     * @param float $weight
-     */
     public function setWeight(float $weight): void
     {
         $this->weight = $weight;
     }
 
-    /**
-     * @return string
-     */
     public function getSourceKladr(): string
     {
         return $this->sourceKladr;
     }
 
-    /**
-     * @return string
-     */
     public function getTargetKladr(): string
     {
         return $this->targetKladr;
     }
 
-    /**
-     * @return float
-     */
     public function getWeight(): float
     {
         return $this->weight;
+    }
+
+    public function addOrder(): array
+    {
+        return $this->provider->addOrder();
     }
 }
