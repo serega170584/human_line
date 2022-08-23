@@ -22,7 +22,7 @@ class QuickDelivery implements DeliveryInterface
     /**
      * @throws \Exception
      */
-    public function getRows(): array
+    public function getOffer(): array
     {
         $price = null;
         $date = null;

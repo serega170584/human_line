@@ -15,6 +15,9 @@ use App\Delivery\SlowDelivery;
 
 class DeliveryController extends AbstractController
 {
+    /**
+     * @throws \Exception
+     */
     #[Route('/delivery', name: 'app_delivery')]
     public function index(DeliveryListInterface $deliveryList, Request $request): JsonResponse
     {
@@ -22,20 +25,20 @@ class DeliveryController extends AbstractController
 
         $jsonErrors = [];
 
-        $fromKladr = $request->get('from_kladr');
+        $sourceKladr = $request->get('source_kladr');
         $targetKladr = $request->get('target_kladr');
         $weight = (float)$request->get('weight');
 
-        $errors = $validator->validate($fromKladr, [new NotBlank()]);
+        $errors = $validator->validate($sourceKladr, [new NotBlank()]);
         if (0 !== count($errors)) {
-            foreach ($errors as $name => $error) {
-                $jsonErrors['from_kladr'][] = $error->getMessage();
+            foreach ($errors as $error) {
+                $jsonErrors['source_kladr'][] = $error->getMessage();
             }
         }
 
         $errors = $validator->validate($targetKladr, [new NotBlank()]);
         if (0 !== count($errors)) {
-            foreach ($errors as $name => $error) {
+            foreach ($errors as $error) {
                 $jsonErrors['target_kladr'][] = $error->getMessage();
             }
         }
@@ -45,7 +48,7 @@ class DeliveryController extends AbstractController
             new Positive(),
         ]);
         if (0 !== count($errors)) {
-            foreach ($errors as $name => $error) {
+            foreach ($errors as $error) {
                 $jsonErrors['weight'][] = $error->getMessage();
             }
         }
@@ -54,15 +57,14 @@ class DeliveryController extends AbstractController
             return $this->json($jsonErrors);
         }
 
+        $offers = [];
         foreach ($deliveryList->getList() as $delivery) {
             /* @var SlowDelivery|QuickDelivery $delivery */
-            $delivery->setSourceKladr($fromKladr);
+            $delivery->setSourceKladr($sourceKladr);
             $delivery->setTargetKladr($targetKladr);
             $delivery->setWeight($weight);
+            $offers[] = $delivery->getOffer();
         }
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/DeliveryController.php',
-        ]);
+        return $this->json($offers);
     }
 }

@@ -8,7 +8,7 @@ use App\Provider\ProviderInterface;
 
 class SlowDelivery implements DeliveryInterface
 {
-    private const BASE_PRICE = 15000;
+    private const BASE_PRICE = 150;
 
     private string $sourceKladr;
     private string $targetKladr;
@@ -21,7 +21,7 @@ class SlowDelivery implements DeliveryInterface
     {
     }
 
-    public function getRows(): array
+    public function getOffer(): array
     {
         $price = null;
         $date = null;
@@ -35,8 +35,9 @@ class SlowDelivery implements DeliveryInterface
             $date = $response['date'];
 
             $money = \Money\Money::RUB(self::BASE_PRICE);
-            $money->multiply($coefficient);
-            $price = $money->getAmount() / 100;
+            $money = $money->multiply($coefficient);
+
+            $price = $money->getAmount();
         }
 
         return [

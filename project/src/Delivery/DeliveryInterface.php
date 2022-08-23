@@ -6,5 +6,5 @@ namespace App\Delivery;
 
 interface DeliveryInterface
 {
-    public function getRows(): array;
+    public function getOffer(): array;
 }
